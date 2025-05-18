@@ -1,10 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-import os
-import openai
 from typing import List
+import os
+from dotenv import load_dotenv
+import google.generativeai as genai
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Load environment variables
+load_dotenv()
+genai.configure(api_key=os.getenv("GEMINI_API"))
 
 app = FastAPI()
 
@@ -19,22 +22,17 @@ class PreventivePlanInput(BaseModel):
     gender: str
     conditions: List[str]
 
-def call_openai(prompt: str, max_tokens=150):
-    response = openai.Completion.create(
-        engine="gpt-4o-mini",  # or your preferred engine
-        prompt=prompt,
-        max_tokens=max_tokens,
-        temperature=0.7,
-        n=1,
-        stop=None,
-    )
-    return response.choices[0].text.strip()
+# Helper function to query Gemini
+def generate_with_gemini(prompt: str):
+    model = genai.GenerativeModel("gemini-2.0-flash")
+    response = model.generate_content(prompt)
+    return response.text.strip()
 
 @app.post("/symptom-check")
 async def symptom_check(data: SymptomInput):
     prompt = f"Given the symptoms: {data.symptoms}, list possible conditions and indicate urgency level (low, medium, high). Respond in short bullet points."
     try:
-        result = call_openai(prompt)
+        result = generate_with_gemini(prompt)
         return {"result": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -43,7 +41,7 @@ async def symptom_check(data: SymptomInput):
 async def simplify_prescription(data: PrescriptionInput):
     prompt = f"Summarize this medical prescription or notes in simple language for a patient:\n\n{data.text}"
     try:
-        result = call_openai(prompt)
+        result = generate_with_gemini(prompt)
         return {"summary": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -56,7 +54,7 @@ async def preventive_plan(data: PreventivePlanInput):
         f"with these conditions: {conditions_str}. Provide daily/weekly tips."
     )
     try:
-        result = call_openai(prompt)
+        result = generate_with_gemini(prompt)
         return {"plan": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
