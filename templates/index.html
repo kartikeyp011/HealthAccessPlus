@@ -603,5 +603,67 @@
             });
         });
     </script>
+    <!-- Add this right before the closing </body> tag -->
+    <script>
+        // Mobile Menu Toggle - Improved version
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+            const mobileMenu = document.querySelector('.md\\:hidden.hidden');
+            
+            menuButton?.addEventListener('click', function() {
+                mobileMenu?.classList.toggle('hidden');
+            });
+
+            // Check backend connection
+            async function checkBackendHealth() {
+                try {
+                    const response = await fetch('/api/health');
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log('Backend connected:', data);
+                        // You could show a visual indicator here if needed
+                    } else {
+                        console.warn('Backend responded with non-OK status');
+                    }
+                } catch (error) {
+                    console.error('Backend connection error:', error);
+                    // You might want to show a subtle warning to users
+                }
+            }
+
+            // Run health check
+            checkBackendHealth();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add active class to current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('nav a').forEach(link => {
+                const linkPage = link.getAttribute('href').split('/').pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+    <script src="sw.js"></script>
 </body>
 </html>

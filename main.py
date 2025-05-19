@@ -29,7 +29,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # path to backend folder
 FRONTEND_DIR = os.path.join(BASE_DIR, "..", "frontend")  # one level up + frontend
 
 templates = Jinja2Templates(directory=FRONTEND_DIR)
-app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+# app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+# NEW (mount static files at /static)
+app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
 
 # Serve frontend HTML and static assets from "frontend" folder
 # templates = Jinja2Templates(directory="frontend")

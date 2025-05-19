@@ -157,6 +157,30 @@
             margin-right: 12px;
             font-size: 20px;
         }
+        .fa-spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Results styling */
+        .prose {
+            line-height: 1.6;
+        }
+
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .prose li {
+            margin-bottom: 0.25rem;
+        }
     </style>
 </head>
 <body>
@@ -294,66 +318,6 @@
                 </div>
             </div>
 
-            <!-- Step 3: Additional Symptoms -->
-            <div class="flex items-center mb-8">
-                <div class="step-number">3</div>
-                <h2 class="text-xl font-semibold text-gray-800">Additional Symptoms</h2>
-            </div>
-
-            <div class="mb-10">
-                <p class="text-gray-700 mb-4 font-medium">Do you have any of these additional symptoms? (Select all that apply)</p>
-                <div class="grid md:grid-cols-3 gap-3">
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Fever</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Chills</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Headache</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Fatigue</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Nausea</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Vomiting</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Diarrhea</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Shortness of breath</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Cough</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Muscle aches</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Sore throat</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox">
-                        <span>Loss of taste/smell</span>
-                    </label>
-                </div>
-            </div>
-
             <!-- Step 4: Medical History -->
             <div class="flex items-center mb-8">
                 <div class="step-number">4</div>
@@ -365,39 +329,39 @@
                     <label class="block text-gray-700 mb-2 font-medium">Do you have any of these pre-existing conditions? (Select all that apply)</label>
                     <div class="grid md:grid-cols-3 gap-3">
                         <label class="checkbox-item">
-                            <input type="checkbox">
+                            <input type="checkbox" name="conditions" value="Hypertension">
                             <span>Hypertension</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox">
+                            <input type="checkbox" name="conditions" value="Diabetes">
                             <span>Diabetes</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox">
+                            <input type="checkbox" name="conditions" value="Heart disease">
                             <span>Heart disease</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox">
+                            <input type="checkbox" name="conditions" value="Lung disease">
                             <span>Lung disease</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox">
+                            <input type="checkbox" name="conditions" value="Kidney disease">
                             <span>Kidney disease</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox">
+                            <input type="checkbox" name="conditions" value="Autoimmune disorder">
                             <span>Autoimmune disorder</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox">
+                            <input type="checkbox" name="conditions" value="Cancer">
                             <span>Cancer</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox">
+                            <input type="checkbox" name="conditions" value="Immunocompromised">
                             <span>Immunocompromised</span>
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox">
+                            <input type="checkbox" name="conditions" value="None of the above">
                             <span>None of the above</span>
                         </label>
                     </div>
@@ -405,12 +369,12 @@
 
                 <div class="mb-6">
                     <label class="block text-gray-700 mb-2 font-medium" for="medications">Are you currently taking any medications?</label>
-                    <textarea id="medications" rows="2" class="form-control" placeholder="List any medications you're currently taking"></textarea>
+                    <textarea id="medications" name="medications" rows="2" class="form-control" placeholder="List any medications you're currently taking"></textarea>
                 </div>
 
                 <div class="mb-6">
                     <label class="block text-gray-700 mb-2 font-medium" for="allergies">Do you have any allergies?</label>
-                    <textarea id="allergies" rows="2" class="form-control" placeholder="List any allergies you have"></textarea>
+                    <textarea id="allergies" name="allergies" rows="2" class="form-control" placeholder="List any allergies you have"></textarea>
                 </div>
             </div>
 
@@ -537,23 +501,102 @@
     </footer>
 
     <script>
-        // Original functionality remains exactly the same
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+            const mobileMenu = document.querySelector('.md\\:hidden.hidden');
+            
+            menuButton?.addEventListener('click', function() {
+                mobileMenu?.classList.toggle('hidden');
+            });
+
+            // Form submission handler
             const form = document.querySelector('form');
             const submitButton = document.querySelector('button[type="submit"]');
             
-            submitButton.addEventListener('click', function(e) {
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
-                const age = document.getElementById('age').value;
-                const primarySymptom = document.getElementById('primary-symptom').value;
+                // Show loading state
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Analyzing...';
                 
-                if (!age || primarySymptom === '') {
-                    alert('Please fill in your age and select a primary symptom.');
-                    return;
+                try {
+                    // Collect form data
+                    const formData = {
+                        age: parseInt(document.getElementById('age').value),
+                        sex: document.querySelector('input[name="sex"]:checked').value,
+                        primary_symptom: document.getElementById('primary-symptom').value,
+                        symptom_duration: `${document.getElementById('duration-value').value} ${document.getElementById('duration-unit').value}`,
+                        symptom_severity: parseInt(document.getElementById('symptom-severity').value),
+                        additional_symptoms: Array.from(document.querySelectorAll('input[name="additional-symptoms"]:checked'))
+                                            .map(el => el.value),
+                        conditions: Array.from(document.querySelectorAll('input[name="conditions"]:checked'))
+                                    .map(el => el.value),
+                        medications: document.getElementById('medications').value,
+                        allergies: document.getElementById('allergies').value,
+                        additional_info: document.getElementById('additional-info').value
+                    };
+                    
+                    // Validate required fields
+                    if (!formData.age || !formData.primary_symptom) {
+                        throw new Error('Please fill in your age and select a primary symptom');
+                    }
+                    
+                    // Call API
+                    const response = await fetch('/api/check-symptoms', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.detail || 'API request failed');
+                    }
+                    
+                    const result = await response.json();
+                    
+                    // Display results (create this element in your HTML)
+                    const resultDiv = document.createElement('div');
+                    resultDiv.className = 'card p-8 mt-8 bg-blue-50 border border-blue-200';
+                    resultDiv.innerHTML = `
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Symptom Analysis Results</h3>
+                        <div class="prose max-w-none">
+                            ${result.result.replace(/\n/g, '<br>')}
+                        </div>
+                        <div class="mt-6 p-4 bg-white rounded-lg border border-blue-100">
+                            <p class="text-sm text-gray-600"><i class="fas fa-info-circle text-blue-500 mr-2"></i> 
+                            Remember this is not a diagnosis. Consult a healthcare professional for medical advice.</p>
+                        </div>
+                    `;
+                    
+                    // Insert after form
+                    form.parentNode.insertBefore(resultDiv, form.nextSibling);
+                    
+                    // Scroll to results
+                    resultDiv.scrollIntoView({ behavior: 'smooth' });
+                    
+                } catch (error) {
+                    // Show error message
+                    alert(`Error: ${error.message}`);
+                    console.error('Error:', error);
+                } finally {
+                    // Reset button
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Check My Symptoms';
                 }
-                
-                alert('Form submitted! In a complete application, you would be redirected to view your symptom assessment results.');
+            });
+            
+            // Add values to checkboxes (add this to your HTML or here)
+            document.querySelectorAll('input[name="additional-symptoms"]').forEach((el, index) => {
+                el.value = el.nextElementSibling.textContent.trim();
+            });
+            
+            document.querySelectorAll('input[name="conditions"]').forEach((el, index) => {
+                el.value = el.nextElementSibling.textContent.trim();
             });
         });
     </script>
