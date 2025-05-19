@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preventive Care | Health & Wellness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-heartbeat text-2xl"></i>
+                <span class="font-bold text-xl">HealthFirst</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-blue-200">Home</a>
+                <a href="#" class="font-bold border-b-2 border-white">Preventive Care</a>
+                <a href="#" class="hover:text-blue-200">Services</a>
+                <a href="#" class="hover:text-blue-200">Resources</a>
+                <a href="#" class="hover:text-blue-200">Contact</a>
+            </div>
+            <button class="md:hidden text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-blue-500 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Preventive Care Matters</h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Taking proactive steps today can lead to a healthier tomorrow. Discover how preventive care can help you maintain optimal health and prevent disease.</p>
+            <button class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full hover:bg-blue-100 transition duration-300">Schedule a Checkup</button>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Benefits of Preventive Care</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-blue-50 p-8 rounded-lg shadow-md text-center">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-virus text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Early Detection</h3>
+                    <p>Identify health issues before they become serious through regular screenings and check-ups.</p>
+                </div>
+                
+                <div class="bg-blue-50 p-8 rounded-lg shadow-md text-center">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-coins text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Cost Savings</h3>
+                    <p>Prevent expensive treatments and hospitalizations by addressing health concerns early.</p>
+                </div>
+                
+                <div class="bg-blue-50 p-8 rounded-lg shadow-md text-center">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-heart-pulse text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Better Quality of Life</h3>
+                    <p>Maintain your health and vitality through preventive measures and healthy lifestyle choices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommended Screenings -->
+    <div class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Recommended Screenings by Age</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Age Group Tabs -->
+                <div class="flex flex-wrap border-b border-gray-200 mb-8">
+                    <button class="px-6 py-3 bg-blue-500 text-white font-medium rounded-t-lg">Adults 18-39</button>
+                    <button class="px-6 py-3 text-gray-600 hover:bg-gray-100">Adults 40-64</button>
+                    <button class="px-6 py-3 text-gray-600 hover:bg-gray-100">Adults 65+</button>
+                    <button class="px-6 py-3 text-gray-600 hover:bg-gray-100">Children</button>
+                </div>
+                
+                <!-- Screening List -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="space-y-4">
+                        <div class="border-b pb-4">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-lg font-bold">Blood Pressure Screening</h3>
+                                <span class="bg-blue-100 text-blue-800 text-sm py-1 px-3 rounded-full">Every 3-5 years</span>
+                            </div>
+                            <p class="mt-2 text-gray-600">Regular blood pressure checks to detect hypertension.</p>
+                        </div>
+                        
+                        <div class="border-b pb-4">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-lg font-bold">Cholesterol Screening</h3>
+                                <span class="bg-blue-100 text-blue-800 text-sm py-1 px-3 rounded-full">Every 4-6 years</span>
+                            </div>
+                            <p class="mt-2 text-gray-600">Cholesterol tests to assess heart disease risk.</p>
+                        </div>
+                        
+                        <div class="border-b pb-4">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-lg font-bold">Diabetes Screening</h3>
+                                <span class="bg-blue-100 text-blue-800 text-sm py-1 px-3 rounded-full">Every 3 years</span>
+                            </div>
+                            <p class="mt-2 text-gray-600">Blood glucose tests for those with risk factors.</p>
+                        </div>
+                        
+                        <div class="border-b pb-4">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-lg font-bold">Skin Cancer Screening</h3>
+                                <span class="bg-blue-100 text-blue-800 text-sm py-1 px-3 rounded-full">Annual</span>
+                            </div>
+                            <p class="mt-2 text-gray-600">Regular skin examinations for suspicious moles or lesions.</p>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-lg font-bold">Depression Screening</h3>
+                                <span class="bg-blue-100 text-blue-800 text-sm py-1 px-3 rounded-full">As needed</span>
+                            </div>
+                            <p class="mt-2 text-gray-600">Mental health check-ups, especially during times of stress or major life changes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vaccination Section -->
+    <div class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h2 class="text-3xl font-bold mb-4">Stay Protected with Vaccinations</h2>
+                    <p class="text-gray-600 mb-6">Vaccines are a crucial part of preventive care, protecting you and your community from serious diseases. Our clinic offers a full range of vaccinations for all age groups.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Influenza (Flu) vaccine</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Tdap (Tetanus, Diphtheria, Pertussis)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>HPV vaccine</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Pneumococcal vaccines</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>COVID-19 vaccine and boosters</span>
+                        </li>
+                    </ul>
+                    <button class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300">View Vaccination Schedule</button>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="/api/placeholder/600/400" alt="Vaccination" class="rounded-lg shadow-lg w-full">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lifestyle Tips -->
+    <div class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Healthy Lifestyle Tips</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Balanced Nutrition</h3>
+                    <p class="text-gray-600">Eat a variety of fruits, vegetables, whole grains, lean proteins, and healthy fats to fuel your body properly.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Regular Exercise</h3>
+                    <p class="text-gray-600">Aim for at least 150 minutes of moderate activity or 75 minutes of vigorous activity each week.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Quality Sleep</h3>
+                    <p class="text-gray-600">Prioritize 7-9 hours of quality sleep per night to support physical and mental health.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Stress Management</h3>
+                    <p class="text-gray-600">Practice meditation, deep breathing, or other relaxation techniques to manage stress effectively.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="bg-blue-600 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Take Control of Your Health Today</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Don't wait for symptoms to appear. Schedule your preventive care appointment and take the first step toward a healthier future.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button class="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-blue-100 transition duration-300">
+                    Schedule an Appointment
+                </button>
+                <button class="border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Talk to a Provider
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Patient Success Stories</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="italic mb-6">"My annual wellness exam detected high blood pressure before it became a serious issue. The preventive care team helped me make lifestyle changes that brought my numbers back to normal."</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold text-blue-600">JD</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">James Davis</h4>
+                            <p class="text-gray-600 text-sm">Patient since 2018</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="italic mb-6">"The recommended cancer screening for my age group detected an early-stage condition that was completely treatable. I'm so grateful for the preventive care guidance I received."</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold text-blue-600">SM</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Miller</h4>
+                            <p class="text-gray-600 text-sm">Patient since 2020</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="italic mb-6">"The nutrition counseling and lifestyle program has helped me lose 30 pounds and reverse my pre-diabetic condition. Prevention really is the best medicine!"</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <span class="font-bold text-blue-600">RT</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Robert Thompson</h4>
+                            <p class="text-gray-600 text-sm">Patient since 2019</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <button class="flex justify-between items-center w-full font-bold text-lg text-left">
+                        <span>What is preventive care?</span>
+                        <i class="fas fa-chevron-down text-blue-500"></i>
+                    </button>
+                    <div class="mt-4">
+                        <p class="text-gray-600">Preventive care consists of healthcare services like check-ups, screenings, and counseling that are designed to prevent illnesses, disease, and other health problems, or to detect them at an early stage when treatment is likely to work best.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <button class="flex justify-between items-center w-full font-bold text-lg text-left">
+                        <span>Is preventive care covered by insurance?</span>
+                        <i class="fas fa-chevron-down text-blue-500"></i>
+                    </button>
+                    <div class="mt-4">
+                        <p class="text-gray-600">Most health insurance plans cover preventive care services without charging a copayment or coinsurance, even if you haven't met your deductible. Contact your insurance provider for specific details about your coverage.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <button class="flex justify-between items-center w-full font-bold text-lg text-left">
+                        <span>How often should I get preventive screenings?</span>
+                        <i class="fas fa-chevron-down text-blue-500"></i>
+                    </button>
+                    <div class="mt-4">
+                        <p class="text-gray-600">The frequency of preventive screenings depends on factors like your age, gender, family history, and overall health status. We recommend scheduling an annual wellness visit where your provider can recommend appropriate screenings based on your individual needs.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <button class="flex justify-between items-center w-full font-bold text-lg text-left">
+                        <span>What happens during a preventive care visit?</span>
+                        <i class="fas fa-chevron-down text-blue-500"></i>
+                    </button>
+                    <div class="mt-4">
+                        <p class="text-gray-600">During a preventive care visit, your healthcare provider will typically review your medical history, conduct a physical exam, perform or order recommended screenings, provide necessary immunizations, and discuss lifestyle factors that impact your health. They may also provide counseling on topics like nutrition, physical activity, and stress management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-xl text-center">
+            <h2 class="text-3xl font-bold mb-4">Stay Informed</h2>
+            <p class="text-gray-600 mb-8">Subscribe to our newsletter for the latest health tips, preventive care updates, and special offers.</p>
+            
+            <form class="flex flex-col sm:flex-row gap-4">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">Subscribe</button>
+            </form>
+            <p class="text-sm text-gray-500 mt-4">We respect your privacy and will never share your information.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">HealthFirst</h3>
+                    <p class="text-gray-400">Providing quality healthcare and preventive services to keep our community healthy.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Preventive Care</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Screenings & Tests</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Vaccinations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Wellness Programs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Telehealth Services</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Health Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Prevention Guidelines</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Patient Portal</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Insurance Information</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">123 Health Street, Medical Center, CA 90210</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">(800) 555-HEALTH</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">info@healthfirst.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">Mon-Fri: 8am-6pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 HealthFirst. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple toggle functionality for FAQ items
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqButtons = document.querySelectorAll('.bg-white button');
+            
+            faqButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle visibility
+                    if (content.style.display === 'none') {
+                        content.style.display = 'block';
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        content.style.display = 'none';
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

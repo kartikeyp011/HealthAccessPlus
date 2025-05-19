@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare AI - Your Personal Health Assistant</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --primary-dark: #4338ca;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f8fafc 100%);
+        }
+        
+        .feature-icon {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3), 0 2px 4px -1px rgba(79, 70, 229, 0.1);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -2px rgba(79, 70, 229, 0.1);
+        }
+        
+        .btn-outline {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-outline:hover {
+            transform: translateY(-2px);
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+        
+        .pulse-animation {
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .floating {
+            animation: floating 8s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .step-connector {
+            position: relative;
+        }
+        
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background-color: #e2e8f0;
+            z-index: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .step-connector::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center mr-3">
+                        <i class="fas fa-heartbeat text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-900">Health<span class="text-indigo-600">Care</span>AI</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link active text-gray-900 font-medium">Home</a>
+                    <a href="symptom-checker.html" class="nav-link text-gray-600 hover:text-gray-900 font-medium">Symptom Checker</a>
+                    <a href="prescription-simplifier.html" class="nav-link text-gray-600 hover:text-gray-900 font-medium">Prescription Help</a>
+                    <a href="preventive-care.html" class="nav-link text-gray-600 hover:text-gray-900 font-medium">Preventive Care</a>
+                    <a href="#" class="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors">Login</a>
+                </nav>
+                
+                <!-- Mobile menu button -->
+                <button class="md:hidden text-gray-600 focus:outline-none" aria-label="Toggle menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu (hidden by default) -->
+            <div class="md:hidden hidden mt-4 pb-2">
+                <a href="index.html" class="block py-2 px-4 bg-indigo-50 text-indigo-600 rounded-lg font-medium">Home</a>
+                <a href="symptom-checker.html" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg mt-1">Symptom Checker</a>
+                <a href="prescription-simplifier.html" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg mt-1">Prescription Help</a>
+                <a href="preventive-care.html" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg mt-1">Preventive Care</a>
+                <a href="#" class="block py-2 px-4 mt-2 text-center bg-indigo-600 text-white rounded-lg font-medium">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient">
+            <div class="container mx-auto px-6 py-20 lg:py-28">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-10">
+                        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                            AI-Powered <span class="text-indigo-600">Healthcare</span> at Your Fingertips
+                        </h1>
+                        <p class="text-lg text-gray-600 mb-8 max-w-xl">
+                            Get personalized health insights, understand medical terms, and make informed decisions with our advanced AI healthcare assistant.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="symptom-checker.html" class="btn-primary px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700">
+                                Check Symptoms <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="prescription-simplifier.html" class="btn-outline px-6 py-3 border border-indigo-600 text-indigo-600 font-medium rounded-lg">
+                                Understand Prescriptions
+                            </a>
+                        </div>
+                        
+                        <div class="mt-10 flex items-center">
+                            <div class="flex -space-x-2">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="User">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="User">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="User">
+                            </div>
+                            <div class="ml-4">
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="text-gray-600 text-sm mt-1">Trusted by 10,000+ users</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 relative">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-100 rounded-full opacity-20 -z-10"></div>
+                        <div class="absolute bottom-0 left-0 w-64 h-64 bg-indigo-100 rounded-full opacity-20 -z-10"></div>
+                        <div class="relative z-10">
+                            <div class="bg-white p-6 rounded-2xl shadow-xl floating">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
+                                        <i class="fas fa-robot text-indigo-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">HealthCare AI Assistant</h3>
+                                        <p class="text-gray-500 text-sm">Always available to help</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                                    <p class="text-gray-700">Hello! I can help you understand your symptoms, explain prescriptions, and provide personalized health recommendations.</p>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-600 text-sm rounded-full">Symptom Checker</span>
+                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-600 text-sm rounded-full">Prescription Help</span>
+                                </div>
+                            </div>
+                            <div class="mt-6 ml-12 bg-white p-4 rounded-lg shadow-md floating" style="animation-delay: 0.5s;">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-gray-700">Your health report is ready. <span class="font-medium text-indigo-600">View insights</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Badges -->
+        <div class="bg-white py-8 border-b">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
+                    <img src="https://via.placeholder.com/120x40?text=HIPAA" alt="HIPAA Compliant" class="h-8">
+                    <img src="https://via.placeholder.com/120x40?text=Medical" alt="Medical Certified" class="h-8">
+                    <img src="https://via.placeholder.com/120x40?text=Secure" alt="256-bit Encryption" class="h-8">
+                    <img src="https://via.placeholder.com/120x40?text=Trusted" alt="Trusted by Doctors" class="h-8">
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm font-medium mb-4">How We Help</span>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Your Personal Health Companion</h2>
+                    <p class="text-gray-600">Our AI-powered tools provide reliable health information and simplify complex medical concepts for better understanding.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Symptom Analysis -->
+                    <div class="feature-card bg-white rounded-xl p-8 border border-gray-100 hover:border-transparent hover:shadow-xl transition-all duration-300">
+                        <div class="feature-icon w-16 h-16 bg-indigo-100 rounded-lg text-indigo-600 flex items-center justify-center text-2xl mb-6">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Symptom Analysis</h3>
+                        <p class="text-gray-600 mb-6">Describe your symptoms and receive AI-powered analysis with potential conditions and recommended actions.</p>
+                        <a href="symptom-checker.html" class="inline-flex items-center text-indigo-600 font-medium group">
+                            Check Symptoms
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Prescription Simplifier -->
+                    <div class="feature-card bg-white rounded-xl p-8 border border-gray-100 hover:border-transparent hover:shadow-xl transition-all duration-300">
+                        <div class="feature-icon w-16 h-16 bg-indigo-100 rounded-lg text-indigo-600 flex items-center justify-center text-2xl mb-6">
+                            <i class="fas fa-prescription-bottle-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Prescription Help</h3>
+                        <p class="text-gray-600 mb-6">Upload or describe your prescription to get simplified explanations of medications and potential interactions.</p>
+                        <a href="prescription-simplifier.html" class="inline-flex items-center text-indigo-600 font-medium group">
+                            Understand Medications
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Preventive Care -->
+                    <div class="feature-card bg-white rounded-xl p-8 border border-gray-100 hover:border-transparent hover:shadow-xl transition-all duration-300">
+                        <div class="feature-icon w-16 h-16 bg-indigo-100 rounded-lg text-indigo-600 flex items-center justify-center text-2xl mb-6">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Preventive Care</h3>
+                        <p class="text-gray-600 mb-6">Receive personalized recommendations for screenings and preventive measures based on your health profile.</p>
+                        <a href="preventive-care.html" class="inline-flex items-center text-indigo-600 font-medium group">
+                            View Recommendations
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm font-medium mb-4">Simple Process</span>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">How HealthCare AI Works</h2>
+                    <p class="text-gray-600">Get accurate health information in just three simple steps.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="step-connector text-center px-6">
+                        <div class="relative z-10 w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xl shadow-lg mx-auto mb-6">1</div>
+                        <div class="pt-2 pb-6">
+                            <h3 class="text-xl font-semibold mb-4">Select Service</h3>
+                            <p class="text-gray-600">Choose the healthcare tool that matches your needs - symptom checking, prescription help, or preventive care.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="step-connector text-center px-6">
+                        <div class="relative z-10 w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xl shadow-lg mx-auto mb-6">2</div>
+                        <div class="pt-2 pb-6">
+                            <h3 class="text-xl font-semibold mb-4">Provide Details</h3>
+                            <p class="text-gray-600">Enter your symptoms, upload prescriptions, or answer questions about your health history.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="text-center px-6">
+                        <div class="relative z-10 w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xl shadow-lg mx-auto mb-6">3</div>
+                        <div class="pt-2 pb-6">
+                            <h3 class="text-xl font-semibold mb-4">Receive Insights</h3>
+                            <p class="text-gray-600">Get easy-to-understand health information, potential conditions, and recommended next steps.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="symptom-checker.html" class="btn-primary inline-flex items-center px-8 py-4 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700">
+                        Try Symptom Checker Now
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm font-medium mb-4">User Stories</span>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Users Say</h2>
+                    <p class="text-gray-600">Hear from people who have used HealthCare AI to better understand their health.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg">
+                        <div class="flex items-start mb-6">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-12 h-12 rounded-full mr-4" alt="Sarah M.">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Sarah M.</h4>
+                                <p class="text-gray-500 text-sm">Age 34 • New York</p>
+                                <div class="flex text-yellow-400 mt-1">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"The symptom checker helped me identify a condition I hadn't considered. After consulting with my doctor, it turned out to be spot on! This tool gave me the confidence to seek proper medical care."</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Verified User
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg">
+                        <div class="flex items-start mb-6">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full mr-4" alt="Michael K.">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Michael K.</h4>
+                                <p class="text-gray-500 text-sm">Age 52 • Chicago</p>
+                                <div class="flex text-yellow-400 mt-1">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"I was confused about my prescription. The simplifier explained everything in plain language that I could understand. Now I feel much more confident about my medication regimen."</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Verified User
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#" class="inline-flex items-center text-indigo-600 font-medium group">
+                        Read more success stories
+                        <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 bg-indigo-600 text-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="p-6">
+                        <div class="text-4xl font-bold mb-2">10,000+</div>
+                        <div class="text-indigo-100">Active Users</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-4xl font-bold mb-2">95%</div>
+                        <div class="text-indigo-100">Accuracy Rate</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-4xl font-bold mb-2">24/7</div>
+                        <div class="text-indigo-100">Availability</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-4xl font-bold mb-2">4.9★</div>
+                        <div class="text-indigo-100">Average Rating</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 bg-gray-900 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-6">Ready to Take Control of Your Health?</h2>
+                <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">Start with our symptom checker to get personalized insights about your health concerns.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="symptom-checker.html" class="btn-primary px-8 py-4 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700">
+                        Get Started Now
+                    </a>
+                    <a href="#" class="btn-outline px-8 py-4 border border-gray-600 text-white font-medium rounded-lg hover:bg-gray-800">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center mr-3">
+                            <i class="fas fa-heartbeat text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">Health<span class="text-indigo-400">Care</span>AI</span>
+                    </div>
+                    <p class="mb-6">Your trusted AI-powered healthcare assistant for personalized insights and recommendations.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="symptom-checker.html" class="hover:text-white transition-colors">Symptom Checker</a></li>
+                        <li><a href="prescription-simplifier.html" class="hover:text-white transition-colors">Prescription Help</a></li>
+                        <li><a href="preventive-care.html" class="hover:text-white transition-colors">Preventive Care</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Health Tracker</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Doctor Finder</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-6">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Our Team</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Press</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-6">Legal</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">HIPAA Compliance</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Security</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="mb-4 md:mb-0">&copy; 2025 HealthCare AI. All rights reserved.</p>
+                <div class="flex items-center">
+                    <i class="fas fa-globe-americas mr-2"></i>
+                    <select class="bg-gray-800 text-gray-400 border-0 focus:ring-0">
+                        <option>English</option>
+                        <option>Español</option>
+                        <option>Français</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+            const mobileMenu = document.querySelector('.md\\:hidden.hidden');
+            
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add active class to current page link
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('nav a').forEach(link => {
+                const linkPage = link.getAttribute('href').split('/').pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prescription Simplifier | HealthAccessPlus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-light: #6366f1;
+      --primary-dark: #4338ca;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --dark: #1e293b;
+      --light: #f8fafc;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .btn-primary {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3), 0 2px 4px -1px rgba(79, 70, 229, 0.1);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -2px rgba(79, 70, 229, 0.1);
+    }
+    
+    .input-field {
+      transition: all 0.2s ease;
+    }
+    
+    .input-field:focus {
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+    
+    .result-card {
+      transition: all 0.3s ease;
+    }
+    
+    .result-card:hover {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center mr-3">
+            <i class="fas fa-heartbeat text-white"></i>
+          </div>
+          <span class="text-xl font-bold text-gray-900">Health<span class="text-indigo-600">Access</span>Plus</span>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="nav-link text-gray-600 hover:text-indigo-600">Home</a>
+          <a href="symptom-checker.html" class="nav-link text-gray-600 hover:text-indigo-600">Symptom Checker</a>
+          <a href="prescription-simplifier.html" class="nav-link active text-indigo-600 font-medium">Prescription Simplifier</a>
+          <a href="preventive.html" class="nav-link text-gray-600 hover:text-indigo-600">Preventive Care</a>
+        </nav>
+        
+        <!-- Mobile menu button -->
+        <button class="md:hidden text-gray-600 focus:outline-none" aria-label="Toggle menu">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+      
+      <!-- Mobile Menu (hidden by default) -->
+      <div class="md:hidden hidden pb-3">
+        <a href="index.html" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg">Home</a>
+        <a href="symptom-checker.html" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg">Symptom Checker</a>
+        <a href="prescription-simplifier.html" class="block py-2 px-4 bg-indigo-50 text-indigo-600 rounded-lg font-medium">Prescription Simplifier</a>
+        <a href="preventive.html" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg">Preventive Care</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-prescription-bottle-alt text-indigo-600 text-2xl"></i>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-3">Prescription Simplifier</h1>
+        <p class="text-gray-600 max-w-xl mx-auto">
+          Get clear, easy-to-understand explanations of your medical prescriptions in plain language
+        </p>
+      </div>
+      
+      <!-- Input Card -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+        <div class="mb-6">
+          <label for="prescription" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+            <i class="fas fa-paste text-indigo-600 mr-2"></i>
+            Paste your prescription below:
+          </label>
+          <textarea 
+            id="prescription" 
+            rows="6" 
+            class="input-field w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent shadow-sm" 
+            placeholder="Example: Tab Paracetamol 500mg TDS × 3 days for fever and headache"
+          ></textarea>
+        </div>
+        
+        <div class="flex justify-end">
+          <button 
+            onclick="simplifyPrescription()" 
+            class="btn-primary bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 font-medium flex items-center"
+          >
+            <i class="fas fa-magic mr-2"></i> Simplify Prescription
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading Spinner -->
+      <div id="loading" class="flex flex-col items-center justify-center py-12 hidden">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600 mb-4"></div>
+        <p class="text-gray-600">Analyzing your prescription...</p>
+      </div>
+
+      <!-- Result Section -->
+      <div id="result" class="hidden">
+        <div class="result-card bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="bg-gradient-to-r from-green-600 to-green-500 text-white px-6 py-4">
+            <h3 class="text-lg font-semibold flex items-center">
+              <i class="fas fa-check-circle mr-2"></i>
+              Simplified Explanation
+            </h3>
+          </div>
+          
+          <div class="p-6">
+            <div id="output" class="prose max-w-none text-gray-700">
+              <!-- Content will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="mt-6 pt-6 border-t border-gray-200">
+              <h4 class="font-medium text-gray-800 mb-3 flex items-center">
+                <i class="fas fa-lightbulb text-amber-500 mr-2"></i>
+                Helpful Tips
+              </h4>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Set reminders to take your medication on time</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Consult your doctor if you experience any side effects</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Complete the full course as prescribed</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-6 flex justify-end">
+          <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2.5 rounded-lg font-medium hover:bg-gray-50 flex items-center">
+            <i class="fas fa-print mr-2"></i> Print Instructions
+          </button>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div id="error" class="hidden">
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <i class="fas fa-exclamation-circle text-red-500"></i>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">Something went wrong</h3>
+              <div class="mt-2 text-sm text-red-700">
+                <p>We couldn't process your prescription. Please try again or check your input.</p>
+              </div>
+              <div class="mt-4">
+                <button onclick="retrySimplification()" class="text-sm font-medium text-red-800 hover:text-red-700 flex items-center">
+                  <i class="fas fa-redo mr-1"></i> Try Again
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center mb-4 md:mb-0">
+          <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center mr-3">
+            <i class="fas fa-heartbeat text-white text-sm"></i>
+          </div>
+          <span class="text-lg font-bold text-gray-900">Health<span class="text-indigo-600">Access</span>Plus</span>
+        </div>
+        
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-500 hover:text-indigo-600">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-indigo-600">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-indigo-600">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-indigo-600">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
+        <p>&copy; 2025 HealthAccessPlus. All rights reserved.</p>
+        <div class="mt-2 space-x-4">
+          <a href="#" class="hover:text-indigo-600">Privacy Policy</a>
+          <a href="#" class="hover:text-indigo-600">Terms of Service</a>
+          <a href="#" class="hover:text-indigo-600">HIPAA Compliance</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+      const mobileMenu = document.querySelector('.md\\:hidden.hidden');
+      
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    });
+    
+    async function simplifyPrescription() {
+      const prescription = document.getElementById('prescription').value.trim();
+      const loading = document.getElementById('loading');
+      const result = document.getElementById('result');
+      const output = document.getElementById('output');
+      const error = document.getElementById('error');
+
+      result.classList.add('hidden');
+      error.classList.add('hidden');
+      output.textContent = '';
+      loading.classList.remove('hidden');
+
+      try {
+        const response = await fetch('http://localhost:8000/simplify-prescription', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ text: prescription })
+        });
+
+        const data = await response.json();
+        loading.classList.add('hidden');
+
+        if (response.ok && data.result) {
+          output.innerHTML = formatOutput(data.result);
+          result.classList.remove('hidden');
+        } else {
+          throw new Error('Invalid response');
+        }
+      } catch (err) {
+        loading.classList.add('hidden');
+        error.classList.remove('hidden');
+        console.error(err);
+      }
+    }
+    
+    function formatOutput(text) {
+      // Simple formatting for demonstration
+      // In a real app, you might want to parse markdown or add more sophisticated formatting
+      return text
+        .replace(/\n/g, '<br>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+    }
+    
+    function retrySimplification() {
+      document.getElementById('error').classList.add('hidden');
+      document.getElementById('prescription').focus();
+    }
+  </script>
+
+</body>
+</html>

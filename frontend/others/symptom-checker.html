@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthAccess - Symptom Checker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-heartbeat text-2xl"></i>
+                <span class="text-xl font-bold">HealthAccess</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-blue-200">Home</a>
+                <a href="#" class="font-bold border-b-2 border-white">Symptom Checker</a>
+                <a href="#" class="hover:text-blue-200">Find Doctor</a>
+                <a href="#" class="hover:text-blue-200">Appointments</a>
+                <a href="#" class="hover:text-blue-200">Health Records</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="hidden md:block bg-white text-blue-600 px-4 py-1 rounded-full font-medium hover:bg-blue-100">Login</button>
+                <button class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-bold text-gray-800 mb-3">Symptom Checker</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Answer a few questions about your symptoms to receive preliminary health information
+                    and guidance on next steps. This is not a substitute for professional medical advice.
+                </p>
+            </div>
+
+            <!-- Symptom Checker Form -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
+                        <span>1</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-800">Basic Information</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-10">
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="age">Age</label>
+                        <input type="number" id="age" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Sex</label>
+                        <div class="flex space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" name="sex" class="mr-2" checked>
+                                <span>Male</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="sex" class="mr-2">
+                                <span>Female</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="sex" class="mr-2">
+                                <span>Other</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
+                        <span>2</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-800">Primary Symptoms</h2>
+                </div>
+
+                <div class="mb-10">
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2" for="primary-symptom">What is your main symptom?</label>
+                        <select id="primary-symptom" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="" selected disabled>Select a symptom</option>
+                            <option value="headache">Headache</option>
+                            <option value="fever">Fever</option>
+                            <option value="cough">Cough</option>
+                            <option value="sore-throat">Sore Throat</option>
+                            <option value="abdominal-pain">Abdominal Pain</option>
+                            <option value="chest-pain">Chest Pain</option>
+                            <option value="shortness-of-breath">Shortness of Breath</option>
+                            <option value="nausea">Nausea/Vomiting</option>
+                            <option value="diarrhea">Diarrhea</option>
+                            <option value="dizziness">Dizziness</option>
+                            <option value="rash">Skin Rash</option>
+                            <option value="back-pain">Back Pain</option>
+                            <option value="joint-pain">Joint Pain</option>
+                            <option value="fatigue">Fatigue</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2" for="symptom-duration">How long have you been experiencing this symptom?</label>
+                        <div class="flex space-x-4">
+                            <input type="number" id="duration-value" class="w-24 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <select id="duration-unit" class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="hours">Hours</option>
+                                <option value="days" selected>Days</option>
+                                <option value="weeks">Weeks</option>
+                                <option value="months">Months</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2" for="symptom-severity">How severe is this symptom?</label>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-500">Mild</span>
+                            <input type="range" min="1" max="10" value="5" class="w-full max-w-md" id="symptom-severity">
+                            <span class="text-sm text-gray-500">Severe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
+                        <span>3</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-800">Additional Symptoms</h2>
+                </div>
+
+                <div class="mb-10">
+                    <p class="text-gray-700 mb-4">Do you have any of these additional symptoms? (Select all that apply)</p>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Fever</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Chills</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Headache</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Fatigue</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Nausea</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Vomiting</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Diarrhea</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Shortness of breath</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Cough</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Muscle aches</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Sore throat</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span>Loss of taste/smell</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
+                        <span>4</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-800">Medical History</h2>
+                </div>
+
+                <div class="mb-10">
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2">Do you have any of these pre-existing conditions? (Select all that apply)</label>
+                        <div class="grid md:grid-cols-3 gap-3">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Hypertension</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Diabetes</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Heart disease</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Lung disease</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Kidney disease</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Autoimmune disorder</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Cancer</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Immunocompromised</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>None of the above</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2" for="medications">Are you currently taking any medications?</label>
+                        <textarea id="medications" rows="2" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="List any medications you're currently taking"></textarea>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2" for="allergies">Do you have any allergies?</label>
+                        <textarea id="allergies" rows="2" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="List any allergies you have"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
+                        <span>5</span>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-800">Additional Details</h2>
+                </div>
+
+                <div class="mb-10">
+                    <label class="block text-gray-700 mb-2" for="additional-info">Is there anything else you'd like to share about your symptoms?</label>
+                    <textarea id="additional-info" rows="4" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Provide any additional details about your symptoms or concerns"></textarea>
+                </div>
+
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Check My Symptoms
+                    </button>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-yellow-700">
+                            <strong>Important:</strong> This symptom checker is for informational purposes only and is not a qualified medical opinion. 
+                            Do not use in emergencies. If you're experiencing a medical emergency, call your local emergency number immediately.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-6">Frequently Asked Questions</h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-medium text-gray-800 mb-2">Is this symptom checker a substitute for seeing a doctor?</h4>
+                        <p class="text-gray-600">No, this tool is meant to provide general guidance only. It should not replace professional medical advice, diagnosis, or treatment.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-gray-800 mb-2">How accurate is this symptom checker?</h4>
+                        <p class="text-gray-600">While we strive to provide helpful information, online symptom checkers have limitations. Always consult with a healthcare provider for proper diagnosis.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-gray-800 mb-2">When should I seek immediate medical attention?</h4>
+                        <p class="text-gray-600">Seek emergency care for severe symptoms like chest pain, difficulty breathing, severe bleeding, sudden severe headache, sudden confusion, or loss of consciousness.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-gray-800 mb-2">How is my health information protected?</h4>
+                        <p class="text-gray-600">Your health information is kept confidential and secure. We do not store your symptom check data after your session ends. Read our Privacy Policy for more details.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-10 pb-6 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">HealthAccess</h3>
+                    <p class="text-gray-400">Making healthcare more accessible through technology.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Features</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Find a Doctor</a></li>
+                        <li><a href="#" class="hover:text-white">Appointment Scheduling</a></li>
+                        <li><a href="#" class="hover:text-white">Symptom Checker</a></li>
+                        <li><a href="#" class="hover:text-white">Health Records</a></li>
+                        <li><a href="#" class="hover:text-white">Virtual Visits</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Health Articles</a></li>
+                        <li><a href="#" class="hover:text-white">Community</a></li>
+                        <li><a href="#" class="hover:text-white">Provider Resources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Health Street, Medical City</li>
+                        <li><i class="fas fa-phone mr-2"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope mr-2"></i> support@healthaccess.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 HealthAccess. All rights reserved.</p>
+                <div class="mt-2 space-x-4">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                    <a href="#" class="hover:text-white">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // This could include validation logic and handling the form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const submitButton = document.querySelector('button[type="submit"]');
+            
+            // For demonstration purposes, we'll just add a click handler
+            // In a real application, this would connect to your backend API
+            submitButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Basic validation example
+                const age = document.getElementById('age').value;
+                const primarySymptom = document.getElementById('primary-symptom').value;
+                
+                if (!age || primarySymptom === '') {
+                    alert('Please fill in your age and select a primary symptom.');
+                    return;
+                }
+                
+                // In a real app, you would submit the form data to your backend
+                // and then redirect to a results page
+                alert('Form submitted! In a complete application, you would be redirected to view your symptom assessment results.');
+                
+                // You could redirect to a results page like this:
+                // window.location.href = '/symptom-results';
+            });
+        });
+    </script>
+</body>
+</html>

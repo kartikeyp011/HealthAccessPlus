@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prescription Simplifier | HealthAccessPlus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <span class="font-bold text-xl text-blue-600">HealthAccessPlus</span>
+      <div class="space-x-4 hidden md:flex">
+        <a href="index.html" class="text-gray-700 hover:text-blue-600">Home</a>
+        <a href="symptom-checker.html" class="text-gray-700 hover:text-blue-600">Symptom Checker</a>
+        <a href="prescription-simplifier.html" class="text-blue-600 font-semibold">Prescription Simplifier</a>
+        <a href="preventive.html" class="text-gray-700 hover:text-blue-600">Preventive Care Plan</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-grow pt-10 pb-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto bg-white shadow-md rounded-xl p-8">
+      <h2 class="text-3xl font-bold text-blue-700 mb-6 text-center">Simplify Your Prescription</h2>
+      
+      <label for="prescription" class="block text-sm font-medium text-gray-700 mb-1">Paste your prescription below:</label>
+      <textarea id="prescription" rows="6" class="w-full p-4 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., Tab Paracetamol 500mg TDS × 3 days"></textarea>
+
+      <div class="mt-4 flex justify-end">
+        <button onclick="simplifyPrescription()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-semibold shadow transition">Simplify</button>
+      </div>
+
+      <!-- Loading Spinner -->
+      <div id="loading" class="flex justify-center mt-6 hidden">
+        <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
+      </div>
+
+      <!-- Result Section -->
+      <div id="result" class="mt-6 hidden">
+        <h3 class="text-xl font-semibold text-green-700 mb-2">Explanation:</h3>
+        <p id="output" class="bg-green-50 text-green-800 p-4 rounded-md shadow-inner"></p>
+      </div>
+
+      <!-- Error Message -->
+      <div id="error" class="mt-6 hidden">
+        <p class="text-red-600 bg-red-50 border border-red-200 p-4 rounded-md">Something went wrong. Please try again.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center text-sm py-4 text-gray-500">
+    &copy; 2025 HealthAccessPlus. All rights reserved.
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    async function simplifyPrescription() {
+      const prescription = document.getElementById('prescription').value.trim();
+      const loading = document.getElementById('loading');
+      const result = document.getElementById('result');
+      const output = document.getElementById('output');
+      const error = document.getElementById('error');
+
+      result.classList.add('hidden');
+      error.classList.add('hidden');
+      output.textContent = '';
+      loading.classList.remove('hidden');
+
+      try {
+        const response = await fetch('http://localhost:8000/simplify-prescription', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ text: prescription })
+        });
+
+        const data = await response.json();
+        loading.classList.add('hidden');
+
+        if (response.ok && data.result) {
+          output.textContent = data.result;
+          result.classList.remove('hidden');
+        } else {
+          throw new Error('Invalid response');
+        }
+      } catch (err) {
+        loading.classList.add('hidden');
+        error.classList.remove('hidden');
+        console.error(err);
+      }
+    }
+  </script>
+
+</body>
+</html>

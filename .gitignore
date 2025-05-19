@@ -1,3 +1,21 @@
-venv/ 
-__pycache__/ 
-*.pyc 
+# Ignore Python virtual environments
+venv/
+backend/venv/
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+backend/__pycache__/
+backend/*.pyc
+
+# Ignore environment/config files
+.env
+backend/.env
+
+# Optional: Ignore editor/OS-specific files
+*.log
+*.swp
+.DS_Store
+Thumbs.db
