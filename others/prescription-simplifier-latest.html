@@ -83,34 +83,6 @@
       50% { transform: translateY(-8px); }
       100% { transform: translateY(0px); }
     }
-
-    /* Loading spinner animation */
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .animate-spin {
-      animation: spin 1s linear infinite;
-    }
-
-    /* Prose styling for formatted output */
-    .prose {
-      line-height: 1.6;
-    }
-    .prose ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .prose li {
-      margin-bottom: 0.5rem;
-    }
-    .prose strong {
-      font-weight: 600;
-      color: var(--dark);
-    }
   </style>
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
@@ -142,10 +114,10 @@
       
       <!-- Mobile Menu (hidden by default) -->
       <div class="md:hidden hidden pb-3">
-        <a href="index.html" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg">Home</a>
-        <a href="symptom-checker.html" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg">Symptom Checker</a>
-        <a href="prescription-simplifier.html" class="block py-2 px-4 bg-indigo-50 text-indigo-600 rounded-lg font-medium">Prescription Simplifier</a>
-        <a href="preventive.html" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg">Preventive Care</a>
+        <a href="/" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg">Home</a>
+        <a href="symptom-checker" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg">Symptom Checker</a>
+        <a href="prescription-simplifier" class="block py-2 px-4 bg-indigo-50 text-indigo-600 rounded-lg font-medium">Prescription Simplifier</a>
+        <a href="preventive" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg">Preventive Care</a>
       </div>
     </div>
   </header>
@@ -176,13 +148,12 @@
             rows="6" 
             class="input-field w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent shadow-sm" 
             placeholder="Example: Tab Paracetamol 500mg TDS × 3 days for fever and headache"
-            required
           ></textarea>
         </div>
         
         <div class="flex justify-end">
           <button 
-            id="simplifyBtn"
+            onclick="simplifyPrescription()" 
             class="btn-primary bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 font-medium flex items-center"
           >
             <i class="fas fa-magic mr-2"></i> Simplify Prescription
@@ -234,12 +205,9 @@
           </div>
         </div>
         
-        <div class="mt-6 flex justify-end space-x-4">
-          <button id="printBtn" class="bg-white border border-gray-300 text-gray-700 px-6 py-2.5 rounded-lg font-medium hover:bg-gray-50 flex items-center">
+        <div class="mt-6 flex justify-end">
+          <button class="bg-white border border-gray-300 text-gray-700 px-6 py-2.5 rounded-lg font-medium hover:bg-gray-50 flex items-center">
             <i class="fas fa-print mr-2"></i> Print Instructions
-          </button>
-          <button id="newPrescriptionBtn" class="bg-indigo-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-indigo-700 flex items-center">
-            <i class="fas fa-redo mr-2"></i> New Prescription
           </button>
         </div>
       </div>
@@ -254,10 +222,10 @@
             <div class="ml-3">
               <h3 class="text-sm font-medium text-red-800">Something went wrong</h3>
               <div class="mt-2 text-sm text-red-700">
-                <p id="errorMessage">We couldn't process your prescription. Please try again or check your input.</p>
+                <p>We couldn't process your prescription. Please try again or check your input.</p>
               </div>
               <div class="mt-4">
-                <button id="retryBtn" class="text-sm font-medium text-red-800 hover:text-red-700 flex items-center">
+                <button onclick="retrySimplification()" class="text-sm font-medium text-red-800 hover:text-red-700 flex items-center">
                   <i class="fas fa-redo mr-1"></i> Try Again
                 </button>
               </div>
@@ -308,8 +276,8 @@
 
   <!-- JavaScript -->
   <script>
+    // Mobile menu toggle
     document.addEventListener('DOMContentLoaded', function() {
-      // Mobile menu toggle
       const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
       const mobileMenu = document.querySelector('.md\\:hidden.hidden');
       
@@ -318,124 +286,59 @@
           mobileMenu.classList.toggle('hidden');
         });
       }
-
-      // Form elements
-      const prescriptionInput = document.getElementById('prescription');
-      const simplifyBtn = document.getElementById('simplifyBtn');
-      const loadingElement = document.getElementById('loading');
-      const resultElement = document.getElementById('result');
-      const outputElement = document.getElementById('output');
-      const errorElement = document.getElementById('error');
-      const errorMessageElement = document.getElementById('errorMessage');
-      const printBtn = document.getElementById('printBtn');
-      const newPrescriptionBtn = document.getElementById('newPrescriptionBtn');
-      const retryBtn = document.getElementById('retryBtn');
-
-      // Event listeners
-      simplifyBtn.addEventListener('click', simplifyPrescription);
-      printBtn.addEventListener('click', printResults);
-      newPrescriptionBtn.addEventListener('click', resetForm);
-      retryBtn.addEventListener('click', retrySimplification);
-
-      // Handle form submission on Enter key (while in textarea)
-      prescriptionInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && e.ctrlKey) {
-          e.preventDefault();
-          simplifyPrescription();
-        }
-      });
-
-      async function simplifyPrescription() {
-        const prescription = prescriptionInput.value.trim();
-        
-        // Basic validation
-        if (!prescription) {
-          showError('Please enter a prescription to simplify');
-          return;
-        }
-
-        // Show loading state
-        simplifyBtn.disabled = true;
-        simplifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
-        loadingElement.classList.remove('hidden');
-        resultElement.classList.add('hidden');
-        errorElement.classList.add('hidden');
-        outputElement.textContent = '';
-
-        try {
-          const response = await fetch('/api/simplify-prescription', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ text: prescription })
-          });
-
-          const data = await response.json();
-
-          if (!response.ok) {
-            throw new Error(data.detail || 'Failed to simplify prescription');
-          }
-
-          // Show results
-          outputElement.innerHTML = formatOutput(data.summary || data.result);
-          resultElement.classList.remove('hidden');
-          
-        } catch (error) {
-          showError(error.message || 'An error occurred while processing your prescription');
-          console.error('Error:', error);
-        } finally {
-          loadingElement.classList.add('hidden');
-          simplifyBtn.disabled = false;
-          simplifyBtn.innerHTML = '<i class="fas fa-magic mr-2"></i> Simplify Prescription';
-        }
-      }
-
-      function formatOutput(text) {
-        // Convert markdown-like formatting to HTML
-        return text
-          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // bold
-          .replace(/\*(.*?)\*/g, '<em>$1</em>') // italic
-          .replace(/- (.*?)(?:\n|$)/g, '<li>$1</li>') // list items
-          .replace(/\n/g, '<br>') // line breaks
-          .replace(/## (.*?)\n/g, '<h3 class="text-lg font-semibold mt-4 mb-2">$1</h3>') // headings
-          .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-indigo-600 hover:underline" target="_blank">$1</a>'); // links
-      }
-
-      function showError(message) {
-        errorMessageElement.textContent = message;
-        errorElement.classList.remove('hidden');
-      }
-
-      function printResults() {
-        const printContent = document.getElementById('output').innerHTML;
-        const originalContent = document.body.innerHTML;
-        
-        document.body.innerHTML = `
-          <div class="p-8">
-            <h2 class="text-2xl font-bold mb-4">Prescription Explanation</h2>
-            ${printContent}
-            <div class="mt-8 pt-4 border-t text-sm text-gray-600">
-              <p>Generated by HealthAccessPlus on ${new Date().toLocaleDateString()}</p>
-            </div>
-          </div>
-        `;
-        
-        window.print();
-        document.body.innerHTML = originalContent;
-      }
-
-      function resetForm() {
-        prescriptionInput.value = '';
-        resultElement.classList.add('hidden');
-        prescriptionInput.focus();
-      }
-
-      function retrySimplification() {
-        errorElement.classList.add('hidden');
-        prescriptionInput.focus();
-      }
     });
+    
+    async function simplifyPrescription() {
+      const prescription = document.getElementById('prescription').value.trim();
+      const loading = document.getElementById('loading');
+      const result = document.getElementById('result');
+      const output = document.getElementById('output');
+      const error = document.getElementById('error');
+
+      result.classList.add('hidden');
+      error.classList.add('hidden');
+      output.textContent = '';
+      loading.classList.remove('hidden');
+
+      try {
+        const response = await fetch('http://localhost:8000/simplify-prescription', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ text: prescription })
+        });
+
+        const data = await response.json();
+        loading.classList.add('hidden');
+
+        if (response.ok && data.result) {
+          output.innerHTML = formatOutput(data.result);
+          result.classList.remove('hidden');
+        } else {
+          throw new Error('Invalid response');
+        }
+      } catch (err) {
+        loading.classList.add('hidden');
+        error.classList.remove('hidden');
+        console.error(err);
+      }
+    }
+    
+    function formatOutput(text) {
+      // Simple formatting for demonstration
+      // In a real app, you might want to parse markdown or add more sophisticated formatting
+      return text
+        .replace(/\n/g, '<br>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+    }
+    
+    function retrySimplification() {
+      document.getElementById('error').classList.add('hidden');
+      document.getElementById('prescription').focus();
+    }
   </script>
+
 </body>
 </html>
