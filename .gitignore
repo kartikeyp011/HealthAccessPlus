@@ -18,4 +18,6 @@ backend/.env
 *.log
 *.swp
 .DS_Store
-Thumbs.db.env 
+
+Thumbs.dbcleaned-repo/ 
+cleaned-repo
